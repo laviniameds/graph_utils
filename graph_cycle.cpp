@@ -30,18 +30,24 @@ public:
 };
 
 bool hasCycleUtil(Graph &graph, int v, vector<bool> &visited, vector<bool> &stack){
+    //se o vertice nao foi visitado
     if(visited[v] == false){
-        visited[v] = true; 
-        stack[v] = true; 
+        visited[v] = true;  //marca como visitado
+        stack[v] = true;  //coloca na pilha
 
+        //para cada vertice adjacente a v
         for(int u : graph.list_adj[v]) { 
+            //verifica se os vertices adjacentes foram visitados
             if (!visited[u] && hasCycleUtil(graph, u, visited, stack)) 
                 return true; 
+            //verifica se o vertice atual esta na pilha
             else if (stack[u]) 
                 return true; 
         } 
     }
+    //tira o vertice atual da pilha
     stack[v] = false;
+    //nao contem um ciclo
     return false;
 }
 
@@ -51,11 +57,11 @@ bool hasCycle(Graph &graph, int size){
     vector<bool> visited(size);
     vector<bool> stack(size);
   
-    for (int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++)
         if (hasCycleUtil(graph, i, visited, stack))
             return true;    
-    }
     
+    //nao contem um ciclo
     return false;
 }
 
