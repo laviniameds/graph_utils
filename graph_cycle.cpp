@@ -65,8 +65,7 @@ bool hasCycle(Graph &graph, int size){
     return false;
 }
 
-int main()
-{
+int main(){
 	vector<edge> edges = {
 		{1, 4}, {4,2}, {4,3}, {4, 5}, {5, 6}
 	};
